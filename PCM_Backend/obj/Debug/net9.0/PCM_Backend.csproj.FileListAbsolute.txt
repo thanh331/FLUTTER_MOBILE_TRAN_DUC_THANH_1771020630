@@ -1,0 +1,7 @@
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.csproj.AssemblyReference.cache
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.GeneratedMSBuildEditorConfig.editorconfig
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.AssemblyInfoInputs.cache
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.AssemblyInfo.cs
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.csproj.CoreCompileInputs.cache
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.MvcApplicationPartsAssemblyInfo.cs
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net9.0\PCM_Backend.MvcApplicationPartsAssemblyInfo.cache
