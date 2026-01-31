@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VfKC4NB/GPM=",
+  "dgSpecHash": "h8h4eBSjzCw=",
   "success": true,
   "projectFilePath": "D:\\ki2_nam3\\LT Mobile\\baiKT\\MOBILE_FLUTTER_1771020630_TranDucThanh\\PCM_Backend\\PCM_Backend.csproj",
   "expectedPackageFiles": [
@@ -62,7 +62,10 @@
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.encodings.web\\8.0.0\\system.text.encodings.web.8.0.0.nupkg.sha512",
     "C:\\Users\\ADMIN\\.nuget\\packages\\system.text.json\\8.0.0\\system.text.json.8.0.0.nupkg.sha512",
-    "C:\\Users\\ADMIN\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512"
+    "C:\\Users\\ADMIN\\.nuget\\packages\\system.threading.channels\\6.0.0\\system.threading.channels.6.0.0.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\8.0.14\\microsoft.netcore.app.runtime.linux-x64.8.0.14.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\8.0.14\\microsoft.aspnetcore.app.runtime.linux-x64.8.0.14.nupkg.sha512",
+    "C:\\Users\\ADMIN\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\8.0.14\\microsoft.netcore.app.host.linux-x64.8.0.14.nupkg.sha512"
   ],
   "logs": []
 }

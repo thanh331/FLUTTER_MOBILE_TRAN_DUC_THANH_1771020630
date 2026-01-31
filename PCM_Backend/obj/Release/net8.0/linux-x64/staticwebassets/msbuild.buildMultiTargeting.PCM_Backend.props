@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\PCM_Backend.props" />
+</Project>

@@ -9,8 +9,7 @@ class ApiService {
 
   // ⚠️ CẤU HÌNH ĐỊA CHỈ API:
   // Lưu ý: Nếu chạy máy ảo Android hãy đổi localhost thành 10.0.2.2
-  //static const String baseUrl = 'http://localhost:5098/api';
-  static const String baseUrl = 'http://103.123.456.78:5098/api';
+  static const String baseUrl = 'http://103.77.172.239:5098/api';
   ApiService() {
     _dio = Dio(
       BaseOptions(
