@@ -20,46 +20,80 @@ namespace PCM_Backend.Controllers
             _userManager = userManager;
         }
 
+        // GET: api/Tournament
+        // Lấy danh sách giải đấu
         [HttpGet]
         public async Task<IActionResult> GetTournaments()
         {
-            return Ok(await _context.Tournaments.ToListAsync());
+            // Sắp xếp giải mới nhất lên đầu
+            return Ok(await _context.Tournaments.OrderByDescending(t => t.StartDate).ToListAsync());
         }
 
-        // API ĐĂNG KÝ VÀ THU PHÍ GIẢI ĐẤU
+        // --- MỚI THÊM: API TẠO GIẢI ĐẤU ---
+        // POST: api/Tournament/create
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateTournament([FromBody] Tournament model)
+        {
+            if (model == null) return BadRequest(new { Message = "Dữ liệu không hợp lệ" });
+
+            // Kiểm tra các trường bắt buộc (Tùy chọn)
+            if (string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Location))
+            {
+                return BadRequest(new { Message = "Tên giải và địa điểm không được để trống" });
+            }
+
+            // Gán ảnh mặc định nếu người dùng không nhập link ảnh
+            if (string.IsNullOrEmpty(model.ImageUrl))
+            {
+                model.ImageUrl = "https://img.freepik.com/free-photo/pickleball-court-sunset_23-2151121544.jpg";
+            }
+
+            try
+            {
+                _context.Tournaments.Add(model);
+                await _context.SaveChangesAsync();
+                
+                return Ok(new { 
+                    Message = "Tạo giải đấu thành công!", 
+                    Data = model 
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "Lỗi Server: " + ex.Message });
+            }
+        }
+        // ------------------------------------
+
+        // POST: api/Tournament/register/{id}
+        // Đăng ký tham gia giải
         [Authorize]
         [HttpPost("register/{id}")]
         public async Task<IActionResult> RegisterTournament(int id)
         {
-            // 1. Lấy thông tin User (Đảm bảo lấy dữ liệu mới nhất từ DB)
             var username = User.Identity?.Name;
             var user = await _userManager.FindByNameAsync(username);
             if (user == null) return Unauthorized();
 
-            // 2. Lấy thông tin Giải đấu
             var tournament = await _context.Tournaments.FindAsync(id);
             if (tournament == null) return NotFound(new { Message = "Giải đấu không tồn tại" });
 
-            // Mức phí tham gia bạn yêu cầu: 500.000đ
             decimal entryFee = 500000; 
 
-            // 3. Kiểm tra số dư ví
             if (user.WalletBalance < entryFee)
             {
                 return BadRequest(new { Message = $"Số dư không đủ! Cần {entryFee:N0}đ để tham gia giải này." });
             }
 
-            // 4. Thực hiện trừ tiền trong bộ nhớ và tính lại hạng (Rank)
+            // Trừ tiền và cập nhật Rank Level
             user.WalletBalance -= entryFee;
 
-            // Đồng bộ logic RankLevel
             if (user.WalletBalance >= 10000000) user.RankLevel = "Diamond (Kim Cương)";
             else if (user.WalletBalance >= 5000000) user.RankLevel = "Gold (Vàng)";
-            // Sửa dòng else if bị gạch đỏ
             else if (user.WalletBalance >= 1000000) user.RankLevel = "Silver (Bạc)";
             else user.RankLevel = "Standard (Hội viên)";
 
-            // 5. Tạo bản ghi lịch sử giao dịch ví
+            // Lưu giao dịch ví
             var transaction = new WalletTransaction
             {
                 MemberId = user.Id,
@@ -70,26 +104,25 @@ namespace PCM_Backend.Controllers
                 CreatedDate = DateTime.Now
             };
 
-            // 6. LƯU THAY ĐỔI (QUAN TRỌNG: Thứ tự lệnh lưu)
             _context.WalletTransactions.Add(transaction);
 
-            // Cập nhật thông tin User (bao gồm WalletBalance và RankLevel mới)
+            // Cập nhật User và Transaction vào Database
             var updateResult = await _userManager.UpdateAsync(user);
             if (!updateResult.Succeeded)
             {
                 return StatusCode(500, new { Message = "Lỗi khi cập nhật ví trên hệ thống." });
             }
 
-            // Lưu transaction vào DB
             await _context.SaveChangesAsync();
 
             return Ok(new { 
-                Message = "Đăng ký thành công và đã trừ phí tham gia!", 
+                Message = "Đăng ký thành công!", 
                 NewBalance = user.WalletBalance,
                 Rank = user.RankLevel
             });
         }
 
+        // API tạo dữ liệu mẫu
         [HttpPost("seed")]
         public async Task<IActionResult> SeedData()
         {

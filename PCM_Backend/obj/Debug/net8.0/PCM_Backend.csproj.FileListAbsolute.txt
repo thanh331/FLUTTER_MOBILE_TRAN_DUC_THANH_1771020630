@@ -114,3 +114,4 @@ D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\o
 D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net8.0\PCM_Backend.pdb
 D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net8.0\PCM_Backend.genruntimeconfig.cache
 D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net8.0\ref\PCM_Backend.dll
+D:\ki2_nam3\LT Mobile\baiKT\MOBILE_FLUTTER_1771020630_TranDucThanh\PCM_Backend\obj\Debug\net8.0\PCM_Backend.sourcelink.json

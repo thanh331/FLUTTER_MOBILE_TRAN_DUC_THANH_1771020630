@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Authorization; // <--- MỚI THÊM
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -78,7 +78,7 @@ namespace PCM_Backend.Controllers
             return Unauthorized(new { Status = "Error", Message = "Sai tài khoản hoặc mật khẩu!" });
         }
 
-        // --- 3. API Lấy thông tin cá nhân: GET /api/auth/me (MỚI THÊM) ---
+        // 3. API Lấy thông tin cá nhân: GET /api/auth/me
         [HttpGet("me")]
         [Authorize] // Bắt buộc phải có Token mới gọi được
         public async Task<IActionResult> GetProfile()
@@ -93,11 +93,30 @@ namespace PCM_Backend.Controllers
 
             // Trả về thông tin cần thiết
             return Ok(new { 
+                user.Id,
                 user.FullName, 
                 user.Email, 
                 user.WalletBalance, 
                 user.RankLevel 
             });
+        }
+
+        // --- 4. API Lấy danh sách thành viên (MỚI THÊM) ---
+        // GET: api/Auth/members
+        [HttpGet("members")]
+        public IActionResult GetAllMembers()
+        {
+            // Lấy danh sách tất cả user để hiển thị lên màn hình Thách đấu
+            // Chỉ lấy các trường cần thiết để bảo mật (không lấy PasswordHash)
+            var members = _userManager.Users.Select(u => new {
+                u.Id,
+                u.FullName,
+                u.RankLevel,
+                u.WalletBalance,
+                u.Email
+            }).ToList();
+
+            return Ok(members);
         }
     }
 

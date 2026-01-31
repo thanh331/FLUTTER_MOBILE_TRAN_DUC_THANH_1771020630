@@ -13,6 +13,8 @@ namespace PCM_Backend.Data
 
         public DbSet<Court> Courts { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<News> News { get; set; }
+        public DbSet<Challenge> Challenges { get; set; }
 
         public DbSet<Tournament> Tournaments { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
