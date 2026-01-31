@@ -1,0 +1,27 @@
+name: pcm_mobile
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # --- CÁC THƯ VIỆN ĐÃ THÊM ---
+  dio: ^5.4.0                 # Dùng để gọi API Backend
+  flutter_secure_storage: ^9.0.0 # Dùng để lưu Token đăng nhập an toàn
+  provider: ^6.1.1            # Dùng để quản lý trạng thái (State Management)
+  intl: ^0.19.0               # Dùng để định dạng ngày tháng, tiền tệ
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0       # Đã chỉnh lại bản thấp hơn chút để tương thích tốt
+
+flutter:
+  uses-material-design: true
