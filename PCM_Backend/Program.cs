@@ -109,4 +109,18 @@ app.UseAuthorization();  // Phân quyền (Bạn được làm gì?)
 
 app.MapControllers();
 
+// --- TỰ ĐỘNG TẠO DATABASE VÀ TABLE (Mới thêm) ---
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    try {
+        var context = services.GetRequiredService<ApplicationDbContext>();
+        context.Database.Migrate();
+        Console.WriteLine("Database Migrated Successfully!");
+    } catch (Exception ex) {
+        Console.WriteLine($"Database Migration Failed: {ex.Message}");
+    }
+}
+// --------------------------------------------------
+
 app.Run();
